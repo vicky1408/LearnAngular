@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { allAppNames}  from '../mock-app-api';
 import { appNames } from "../app";
+import { AppListService } from "../app-list.service";
 
 @Component({
   selector: 'app-app-list',
@@ -9,16 +10,22 @@ import { appNames } from "../app";
 })
 
 export class AppListComponent implements OnInit {
-  singleAppName = allAppNames;
+  // singleAppName = allAppNames;
+  singleAppName: appNames[];
   selectedApp: appNames;
 
-  constructor() { }
+  constructor(private appListService:AppListService) { }
  
   ngOnInit() {
+    this.getAppList();
   }
 
   onSelect(appName: appNames): void {
     this.selectedApp = appName;
     console:console.log(this.selectedApp);
+  }
+
+  getAppList(): void {
+    this.singleAppName = this.appListService.getAppNames();
   }
 }
