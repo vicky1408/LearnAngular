@@ -1,0 +1,4 @@
+<app-app-input [appEdit]="selectedApp"></app-app-input>
+<ul>
+  <li *ngFor="let appName of singleAppName" (click)="onSelect(appName)">{{appName.id}} - {{appName.name | uppercase}}</li>
+</ul>
